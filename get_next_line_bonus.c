@@ -6,13 +6,13 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:08:28 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:24:34 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../libft/libft.h"
+
 #include "get_next_line_bonus.h"
-#include <sys/syslimits.h>
+
 
 char	*ft_help(char **all)
 {
