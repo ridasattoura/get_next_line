@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ader <ader@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/15 22:55:23 by ader             ###   ########.fr       */
+/*   Updated: 2024/11/16 00:08:28 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "../libft/libft.h"
 #include "get_next_line_bonus.h"
+#include <sys/syslimits.h>
 
 char	*ft_help(char **all)
 {
@@ -115,10 +116,10 @@ char	*read_line(int fd, char **all, char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	*all[1024];
+	static char	*all[OPEN_MAX];
 	char		*buff;
 
-	if (fd < 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd <= OPEN_MAX || read(fd, 0, 0) < 0)
 	{
 		free(all[fd]);
 		all[fd] = NULL;
@@ -129,117 +130,3 @@ char	*get_next_line(int fd)
 		return (NULL);
 	return (read_line(fd, &all[fd], buff));
 }
-// char	*get_next_line(int fd)
-// {
-// 	static char	*all;
-// 	char		*buff;
-// 	size_t		nb;
-// 	char		*line;
-
-// 	if (fd < 0 || read(fd, 0, 0) < 0)
-// 	{
-// 		free(all);
-// 		all = NULL;
-// 		return (NULL);
-// 	}
-// 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-// 	if (!buff)
-// 		return (NULL);
-// 	nb = read(fd, buff, BUFFER_SIZE);
-// 	if (nb == 0)
-// 		return (ft_zero(&all, &buff));
-//     while (nb > 0)
-//     {
-//         buff[nb] = '\0';
-//         if (ft_home(&all, buff) == 0)
-//             return (NULL);
-//         if (ft_strchr(all, '\n') >= 0)
-//             break ;
-//         nb = read(fd, buff, BUFFER_SIZE);
-//     }
-// 	free(buff);
-// 	if (ft_strchr(all, '\n') < 0)
-// 	{
-// 		line = all;
-// 		all = NULL;
-// 		return (line);
-// 	}
-// 	return (ft_help(&all));
-// }
-// .
-// char *ft_zero(char **all, char **buff)
-// {
-//     char *line;
-
-//     free(*buff);
-//     if (!all || !*all)
-//         return (NULL);
-//     if (ft_strchr(*all, '\n') >= 0)
-//         return (ft_help(all));
-//     if (*all[0])
-//     {
-//         line = *all;
-//         *all = NULL;
-//         return (line);
-//     }
-//     free(*all);
-//     *all = NULL;
-//     return (NULL);
-// }
-
-// char    *get_next_line(int fd)
-// {
-//     static char    *all;
-//     char        *buff;
-//     size_t        nb;
-
-//     if (fd < 0 || read(fd, 0, 0) < 0)
-//     {
-//         free(all);
-//         all = NULL;
-//         return (NULL);
-//     }
-//     if (!(buff = malloc((BUFFER_SIZE + 1) * sizeof(char))))
-//         return (NULL);
-//     if ((nb = read(fd, buff, BUFFER_SIZE)) == 0)
-//         return (ft_zero(&all, &buff));
-//     while (nb > 0)
-//     {
-//         buff[nb] = '\0';
-//         if (!ft_home(&all, buff))
-//             return (NULL);
-//         if (ft_strchr(all, '\n') >= 0)
-//             break ;
-//         nb = read(fd, buff, BUFFER_SIZE);
-//     }
-//     free(buff);
-//     if (ft_strchr(all, '\n') < 0)
-//     {
-//         buff = all;
-//         all = NULL;
-//         return (buff);
-//     }
-//     return (ft_help(&all));
-// }
-// if(all == NULL)
-// {
-// 	all = ft_strdup(buff);
-// 	if(all == NULL)
-// 	{
-// 		free(buff);
-// 		return (NULL);
-// 	}
-// }
-// else
-// {
-// 	line= ft_strjoin(all,buff);
-// 	if(line == NULL)
-// 		{
-// 			free(buff);
-// 			free(all);
-// 			all = NULL;
-// 			return (NULL);
-// 		}
-// 		free(all);
-// 		all = line;
-// }
