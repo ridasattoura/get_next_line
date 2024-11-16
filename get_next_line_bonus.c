@@ -6,13 +6,11 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:24:34 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:32:53 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "get_next_line_bonus.h"
-
 
 char	*ft_help(char **all)
 {
@@ -119,9 +117,10 @@ char	*get_next_line(int fd)
 	static char	*all[OPEN_MAX];
 	char		*buff;
 
-	if (fd < 0 || fd <= OPEN_MAX || read(fd, 0, 0) < 0)
+	if (fd < 0 || fd >= OPEN_MAX || read(fd, 0, 0) < 0)
 	{
-		free(all[fd]);
+		if (fd >= 0 && fd < OPEN_MAX)
+			free(all[fd]);
 		all[fd] = NULL;
 		return (NULL);
 	}

@@ -6,7 +6,7 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:19:55 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/16 00:35:06 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,15 @@ char	*read_line(int fd, char **all, char *buff)
 	nb = read(fd, buff, BUFFER_SIZE);
 	if (nb == 0)
 		return (ft_zero(all, &buff));
+	while (nb > 0)
+	{
+		buff[nb] = '\0';
+		if (ft_home(all, buff) == 0)
+			return (NULL);
+		if (ft_strchr(*all, '\n') >= 0)
+			break ;
+		nb = read(fd, buff, BUFFER_SIZE);
+	}
 	free(buff);
 	if (ft_strchr(*all, '\n') < 0)
 	{
