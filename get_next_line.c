@@ -6,7 +6,7 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:35:06 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/16 19:52:17 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*ft_help(char **all)
 	line = ft_substr(*all, 0, i + 1);
 	if (!line)
 	{
-		free(all);
+		free(*all);
 		*all = NULL;
 		return (NULL);
 	}
@@ -59,6 +59,8 @@ size_t	ft_home(char **all, char *buff)
 		if (!line)
 		{
 			free(buff);
+			free(*all);
+            *all = NULL; 
 			return (0);
 		}
 		free(*all);
@@ -118,7 +120,7 @@ char	*get_next_line(int fd)
 	static char	*all;
 	char		*buff;
 
-	if (fd < 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 ||BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free(all);
 		all = NULL;

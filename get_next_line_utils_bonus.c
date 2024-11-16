@@ -6,7 +6,7 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:26:35 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:24:01 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/16 18:55:12 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,16 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 
 int	ft_strchr(const char *str, int c)
 {
-	int	i;
-
-	i = -1;
-	while (str[++i] != '\0')
-	{
-		if (str[i] == (char)c)
-			return (i);
-	}
-	return (-1);
+	    size_t i;
+    
+    if (!str)
+        return (-1);
+    i = 0;
+    while (str[i])
+    {
+        if (str[i] == c)
+            return (i);
+        i++;
+    }
+    return (-1);
 }
