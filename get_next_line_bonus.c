@@ -6,7 +6,7 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:32:53 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:00:33 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,15 @@ char	*ft_help(char **all)
 {
 	char	*buff;
 	char	*line;
-	size_t	i;
+	int		i;
 
 	i = ft_strchr(*all, '\n');
+	if (i == -1)
+		return (NULL);
 	line = ft_substr(*all, 0, i + 1);
 	if (!line)
 	{
-		free(all);
+		free(*all);
 		*all = NULL;
 		return (NULL);
 	}
@@ -86,7 +88,7 @@ char	*ft_zero(char **all, char **buff)
 	return (NULL);
 }
 
-char	*read_line(int fd, char **all, char *buff)
+char	*collect_line(int fd, char **all, char *buff)
 {
 	size_t	nb;
 
@@ -127,5 +129,5 @@ char	*get_next_line(int fd)
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	return (read_line(fd, &all[fd], buff));
+	return (collect_line(fd, &all[fd], buff));
 }

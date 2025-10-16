@@ -95,16 +95,16 @@ char	*ft_substr(char const *str, unsigned int start, size_t len)
 
 int	ft_strchr(const char *str, int c)
 {
-	    size_t i;
-    
-    if (!str)
-        return (-1);
-    i = 0;
-    while (str[i])
-    {
-        if (str[i] == c)
-            return (i);
-        i++;
-    }
-    return (-1);
+	size_t	i;
+
+	if (!str)
+		return (-1);
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (i);
+		i++;
+	}
+	return (-1);
 }

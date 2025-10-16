@@ -6,15 +6,13 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:26:47 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:34:57 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:05:38 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# include <fcntl.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -31,6 +29,6 @@ int		ft_strchr(const char *str, int c);
 char	*ft_help(char **all);
 size_t	ft_home(char **all, char *buff);
 char	*ft_zero(char **all, char **buff);
-char	*read_line(int fd, char **all, char *buff);
+char	*collect_line(int fd, char **all, char *buff);
 
 #endif

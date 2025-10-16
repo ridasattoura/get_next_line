@@ -6,7 +6,7 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:26:47 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 00:34:26 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/17 18:55:11 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int		ft_strchr(const char *str, int c);
 char	*ft_help(char **all);
 size_t	ft_home(char **all, char *buff);
 char	*ft_zero(char **all, char **buff);
-char	*read_line(int fd, char **all, char *buff);
+char	*collect_line(int fd, char **all, char *buff);
 
 #endif

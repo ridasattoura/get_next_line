@@ -6,20 +6,21 @@
 /*   By: risattou <risattou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:27:54 by risattou          #+#    #+#             */
-/*   Updated: 2024/11/16 19:52:17 by risattou         ###   ########.fr       */
+/*   Updated: 2024/11/17 19:08:15 by risattou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../libft/libft.h"
 #include "get_next_line.h"
 
 char	*ft_help(char **all)
 {
 	char	*buff;
 	char	*line;
-	size_t	i;
+	int		i;
 
 	i = ft_strchr(*all, '\n');
+	if (i == -1)
+		return (NULL);
 	line = ft_substr(*all, 0, i + 1);
 	if (!line)
 	{
@@ -60,7 +61,7 @@ size_t	ft_home(char **all, char *buff)
 		{
 			free(buff);
 			free(*all);
-            *all = NULL; 
+			*all = NULL;
 			return (0);
 		}
 		free(*all);
@@ -89,7 +90,7 @@ char	*ft_zero(char **all, char **buff)
 	return (NULL);
 }
 
-char	*read_line(int fd, char **all, char *buff)
+char	*collect_line(int fd, char **all, char *buff)
 {
 	size_t	nb;
 
@@ -120,7 +121,7 @@ char	*get_next_line(int fd)
 	static char	*all;
 	char		*buff;
 
-	if (fd < 0 ||BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 	{
 		free(all);
 		all = NULL;
@@ -129,5 +130,5 @@ char	*get_next_line(int fd)
 	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
 	if (!buff)
 		return (NULL);
-	return (read_line(fd, &all, buff));
+	return (collect_line(fd, &all, buff));
 }
